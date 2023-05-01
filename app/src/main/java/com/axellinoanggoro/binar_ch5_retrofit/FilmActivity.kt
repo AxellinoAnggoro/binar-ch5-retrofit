@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.axellinoanggoro.binar_ch5_retrofit.adapter.FilmAdapter
 import com.axellinoanggoro.binar_ch5_retrofit.databinding.ActivityFilmBinding
 import com.axellinoanggoro.binar_ch5_retrofit.model.ResponseDataFilmItem
 import com.axellinoanggoro.binar_ch5_retrofit.network.FilmClient

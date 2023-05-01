@@ -1,7 +1,6 @@
-package com.axellinoanggoro.binar_ch5_retrofit
+package com.axellinoanggoro.binar_ch5_retrofit.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.axellinoanggoro.binar_ch5_retrofit.databinding.ItemFilmBinding
@@ -13,12 +12,12 @@ class FilmAdapter(var listFilm:List<ResponseDataFilmItem>) : RecyclerView.Adapte
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = ItemFilmBinding.inflate(LayoutInflater.from(parent.context),parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FilmAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.titleFilm.text = listFilm[position].name
         holder.binding.dateFilm.text = listFilm[position].date
         Glide.with(holder.itemView).load(listFilm[position].image).into(holder.binding.imgFilm)
