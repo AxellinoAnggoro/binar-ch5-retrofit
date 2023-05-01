@@ -27,6 +27,21 @@
             android:text="test"
             android:layout_below="@+id/titleNews"
             android:layout_toRightOf="@id/imgNews"/>
+
+        <ImageView
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_create_24"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_below="@id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_create_24"
+            android:layout_alignParentRight="true"/>
         
     </RelativeLayout>
     

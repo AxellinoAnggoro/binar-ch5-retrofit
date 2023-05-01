@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.axellinoanggoro.binar_ch5_retrofit.model.DataNews
 import com.axellinoanggoro.binar_ch5_retrofit.model.ResponseAddNews
 import com.axellinoanggoro.binar_ch5_retrofit.model.ResponseDataNewsItem
+import com.axellinoanggoro.binar_ch5_retrofit.model.ResponseUpdateNews
 import com.axellinoanggoro.binar_ch5_retrofit.network.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,9 +14,13 @@ import retrofit2.Response
 class NewsViewModel : ViewModel() {
     var liveDataNews : MutableLiveData<List<ResponseDataNewsItem>> = MutableLiveData()
     var postDataNews : MutableLiveData<ResponseAddNews> = MutableLiveData()
-
+    var updDataNews : MutableLiveData<List<ResponseUpdateNews>> = MutableLiveData()
     fun postNews() : MutableLiveData<ResponseAddNews>{
         return postDataNews
+    }
+
+    fun putNews() :MutableLiveData<List<ResponseUpdateNews>>{
+        return updDataNews
     }
 
     fun callApiNews(){
@@ -53,6 +58,26 @@ class NewsViewModel : ViewModel() {
 
             override fun onFailure(call: Call<ResponseAddNews>, t: Throwable) {
                 postDataNews.postValue(null)
+            }
+
+        })
+    }
+
+    fun calUpdDataNews(id : Int, title: String, image : String, author : String, desc : String){
+        RetrofitClient.instance.updateDataNews(id, DataNews(title, image, desc, author)).enqueue(object : Callback<List<ResponseUpdateNews>>{
+            override fun onResponse(
+                call: Call<List<ResponseUpdateNews>>,
+                response: Response<List<ResponseUpdateNews>>
+            ) {
+                if(response.isSuccessful){
+                    updDataNews.postValue(response.body())
+                }else{
+                    updDataNews.postValue(null)
+                }
+            }
+
+            override fun onFailure(call: Call<List<ResponseUpdateNews>>, t: Throwable) {
+                updDataNews.postValue(null)
             }
 
         })
